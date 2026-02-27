@@ -169,22 +169,33 @@ void MyImage::save()
 
 void MyImage::filterRed()
 {
-   cout << "Filter Red" << endl;
-
+   for (int i = 0; i < pixels.size(); ++i) {
+       pixels[i].g = 0;
+       pixels[i].b = 0;
+   }
 }
 void MyImage::filterGreen() {
-    cout << "Filter Green" << endl;
+    for (int i = 0; i < pixels.size(); ++i) {
+        pixels[i].r = 0;
+        pixels[i].b = 0;
+    }
 }
 void MyImage::filterBlue() {
-    cout << "Filter Blue" << endl;
+    for (int i = 0; i < pixels.size(); ++i) {
+        pixels[i].r = 0;
+        pixels[i].g = 0;
+    }
 }
 
 void MyImage::greyScale() {
-    cout << "Filter Greyscale" << endl;
+
 }
 
+/**
+ * REQUIRED: Flip across centre Y-axis (left <-> right)
+ */
 void MyImage::flipHorizontal() {
-    cout << "Flip Horizontal" << endl;
+
 }
 void MyImage::flipVertical() {
     cout << "Flip Vertical" << endl;
