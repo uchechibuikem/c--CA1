@@ -173,9 +173,12 @@ void MyImage::filterRed()
 
 }
 void MyImage::filterGreen() {
+        for (int i = 0; i < pixels.size(); ++i) {
+            pixels[i].r = 0;
+            pixels[i].b = 0;
+        }
+    }
 
-    cout << "Filter Green" << endl;
-}
 void MyImage::filterBlue() {
     cout << "Filter Blue" << endl;
 }
