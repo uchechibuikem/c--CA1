@@ -173,6 +173,7 @@ void MyImage::filterRed()
 
 }
 void MyImage::filterGreen() {
+
     cout << "Filter Green" << endl;
 }
 void MyImage::filterBlue() {
@@ -180,7 +181,16 @@ void MyImage::filterBlue() {
 }
 
 void MyImage::greyScale() {
-    cout << "Filter Greyscale" << endl;
+    for (int i = 0; i < pixels.size(); ++i) {
+        unsigned char r = static_cast<unsigned char>(pixels[i].r);
+        unsigned char g = static_cast<unsigned char>(pixels[i].g);
+        unsigned char b = static_cast<unsigned char>(pixels[i].b);
+        unsigned char gray = static_cast<unsigned char>(0.299 * r + 0.587 * g + 0.114 * b);
+        pixels[i].r = gray;
+        pixels[i].g = gray;
+        pixels[i].b = gray;
+    }
+
 }
 
 void MyImage::flipHorizontal() {
