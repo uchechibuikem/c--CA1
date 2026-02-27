@@ -27,7 +27,7 @@ int main()
 
     vector<Button*> buttons;
     buttons.push_back(new Button(font, {660, 20}, {120, 30}, "Reload", [&images, &selectedImage](){images[selectedImage]->reload();}));
-    buttons.push_back(new Button(font, {660, 60}, {120, 30}, "Only Red", [&images, &selectedImage](){images[selectedImage]->filterRed();}));
+
     buttons.push_back(new Button(font, {660, 100}, {120, 30}, "Only Green", [&images, &selectedImage](){images[selectedImage]->filterGreen();}));
     buttons.push_back(new Button(font, {660, 140}, {120, 30}, "Only Blue", [&images, &selectedImage](){images[selectedImage]->filterBlue();}));
     buttons.push_back(new Button(font, {660, 180}, {120, 30}, "Grey Scale", [&images, &selectedImage](){images[selectedImage]->greyScale();}));
