@@ -44,7 +44,7 @@ public:
     void advancedFeature2();
     void advancedFeature3();
     void reload();
-
+    void filterRed();
     void filterGreen();
     void filterBlue();
     void greyScale();

@@ -166,7 +166,11 @@ void MyImage::save()
         ofs.close();
     }
 }
+void MyImage::filterRed()
+{
+    cout << "Filter Red" << endl;
 
+}
 
 void MyImage::filterGreen() {
     cout << "Filter Green" << endl;
