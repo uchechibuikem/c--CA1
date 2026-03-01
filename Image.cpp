@@ -169,8 +169,10 @@ void MyImage::save()
 
 void MyImage::filterRed()
 {
-   cout << "Filter Red" << endl;
-
+    for (int i = 0; i < pixels.size(); ++i) {
+        pixels[i].g = 0;
+        pixels[i].b = 0;
+    }
 }
 void MyImage::filterGreen() {
         for (int i = 0; i < pixels.size(); ++i) {
@@ -180,7 +182,10 @@ void MyImage::filterGreen() {
     }
 
 void MyImage::filterBlue() {
-    cout << "Filter Blue" << endl;
+    for (int i = 0; i < pixels.size(); ++i) {
+        pixels[i].r = 0;
+        pixels[i].g = 0;
+    }
 }
 
 void MyImage::greyScale() {
@@ -197,7 +202,17 @@ void MyImage::greyScale() {
 }
 
 void MyImage::flipHorizontal() {
-    cout << "Flip Horizontal" << endl;
+    const int w = static_cast<int>(this->size.x);
+    const int h = static_cast<int>(this->size.y);
+    if (w <= 1 || h <= 0 || this->pixels.empty()) return;
+
+    for (int y = 0; y < h; ++y) {
+        for (int x = 0; x < w / 2; ++x) {
+            const int left  = (y * w) + x;
+            const int right = (y * w) + (w - 1 - x);
+            std::swap(this->pixels[left], this->pixels[right]);
+        }
+    }
 }
 void MyImage::flipVertical() {
     cout << "Flip Vertical" << endl;
