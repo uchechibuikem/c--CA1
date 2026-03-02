@@ -217,13 +217,87 @@ void MyImage::flipHorizontal() {
 void MyImage::flipVertical() {
     cout << "Flip Vertical" << endl;
 }
+
+ //ADVANCED FEATURE 1: Rotate 90 degrees clockwise//
+
 void MyImage::advancedFeature1() {
-    cout << "Advanced Feature 1" << endl;
+    const int oldW = static_cast<int>(this->size.x);
+    const int oldH = static_cast<int>(this->size.y);
+    if (oldW <= 0 || oldH <= 0 || this->pixels.empty()) return;
+
+    const int newW = oldH;
+    const int newH = oldW;
+
+    std::vector<RGB> rotated;
+    rotated.resize(static_cast<size_t>(newW) * static_cast<size_t>(newH));
+
+    // Mapping (clockwise):
+    // newX = oldY
+    // newY = (oldW - 1 - oldX)
+    for (int oldY = 0; oldY < oldH; ++oldY) {
+        for (int oldX = 0; oldX < oldW; ++oldX) {
+            const int newX = oldY;
+            const int newY = (oldW - 1 - oldX);
+
+            const int oldIdx = (oldY * oldW) + oldX;
+            const int newIdx = (newY * newW) + newX;
+
+            rotated[newIdx] = this->pixels[oldIdx];
+        }
+    }
+
+    this->pixels.swap(rotated);
+    this->size = {static_cast<float>(newW), static_cast<float>(newH)};
 }
 void MyImage::advancedFeature2() {
     cout << "Advanced FEature 2" << endl;
 }
 void MyImage::advancedFeature3() {
-    cout << "Advanced Feature 3" << endl;
+    const int w = static_cast<int>(this->size.x);
+    const int h = static_cast<int>(this->size.y);
+    if (w <= 0 || h <= 0 || this->pixels.empty()) return;
+
+
+    const int cropW = static_cast<int>(w * 0.60f); // 60% width
+    const int cropH = static_cast<int>(h * 0.60f); // 60% height
+
+
+    int startX = (w - cropW) / 2;
+    int startY = (h - cropH) / 2;
+
+
+    if (startX < 0) startX = 0;
+    if (startY < 0) startY = 0;
+
+    int endX = startX + cropW;
+    int endY = startY + cropH;
+
+    if (endX > w) endX = w;
+    if (endY > h) endY = h;
+
+    const int newW = endX - startX;
+    const int newH = endY - startY;
+
+    if (newW <= 0 || newH <= 0) return;
+
+
+    std::vector<RGB> cropped;
+    cropped.resize(static_cast<size_t>(newW) * static_cast<size_t>(newH));
+
+    for (int y = 0; y < newH; ++y) {
+        for (int x = 0; x < newW; ++x) {
+            const int oldX = startX + x;
+            const int oldY = startY + y;
+
+            const int oldIdx = (oldY * w) + oldX;
+            const int newIdx = (y * newW) + x;
+
+            cropped[newIdx] = this->pixels[oldIdx];
+        }
+    }
+
+
+    this->pixels.swap(cropped);
+    this->size = { static_cast<float>(newW), static_cast<float>(newH) };
 }
 
