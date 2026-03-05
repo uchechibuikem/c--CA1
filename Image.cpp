@@ -220,7 +220,7 @@ void MyImage::flipVertical() {
 
  //ADVANCED FEATURE 1: Rotate 90 degrees clockwise//
 
-void MyImage::advancedFeature1() {
+ void MyImage::advancedFeature1() {
     const int oldW = static_cast<int>(this->size.x);
     const int oldH = static_cast<int>(this->size.y);
     if (oldW <= 0 || oldH <= 0 || this->pixels.empty()) return;
