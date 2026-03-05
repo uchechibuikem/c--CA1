@@ -39,11 +39,11 @@ int main()
     buttons.push_back(new Button(font, {660, 420}, {120, 30}, "Save", [&images, &selectedImage](){images[selectedImage]->save();}));
     buttons.push_back(new Button(font, {660, 420}, {120, 30}, "Save", [&images, &selectedImage](){images[selectedImage]->save();}));
 
-
-    buttons.push_back(new Button(font, {190, imgH+30}, {120, 30}, "<", [&images, &selectedImage](){if (selectedImage > 0) selectedImage--;}));
+       buttons.push_back(new Button(font, {190, imgH+30}, {120, 30}, "<", [&images, &selectedImage](){if (selectedImage > 0) selectedImage--;}));
     buttons.push_back(new Button(font, {330, imgH+30}, {120, 30}, ">", [&images, &selectedImage]() {
         if (selectedImage < images.size()-1) selectedImage++;
     }));
+
 
 
     while (window.isOpen())
