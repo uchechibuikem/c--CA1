@@ -250,7 +250,30 @@ void MyImage::advancedFeature1() {
     this->size = {static_cast<float>(newW), static_cast<float>(newH)};
 }
 void MyImage::advancedFeature2() {
-    cout << "Advanced FEature 2" << endl;
+   int width = static_cast<int>(size.x);
+    int height = static_cast<int>(size.y);
+    vector<RGB> tempPixels = pixels;
+    float kernel[3][3] = {
+        {1/16.0f, 2/16.0f, 1/16.0f},
+        {2/16.0f, 4/16.0f, 2/16.0f},
+        {1/16.0f, 2/16.0f, 1/16.0f}
+    };
+
+    for (int y = 1; y < height - 1; ++y) {
+        for (int x = 1; x < width - 1; ++x) {
+            float r = 0, g = 0, b = 0;
+            for (int ky = -1; ky <= 1; ++ky) {
+                for (int kx = -1; kx <= 1; ++kx) {
+                    RGB p = tempPixels[(y + ky) * width + (x + kx)];
+                    float weight = kernel[ky + 1][kx + 1];
+                    r += static_cast<unsigned char>(p.r) * weight;
+                    g += static_cast<unsigned char>(p.g) * weight;
+                    b += static_cast<unsigned char>(p.b) * weight;
+                }
+            }
+            pixels[y * width + x] = RGB(static_cast<char>(r), static_cast<char>(g), static_cast<char>(b));
+        }
+    }
 }
 void MyImage::advancedFeature3() {
     const int w = static_cast<int>(this->size.x);
